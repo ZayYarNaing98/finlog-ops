@@ -30,7 +30,13 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::firstOrCreate(
+                ['name' => $category['name']],
+                [
+                    'description' => $category['description'],
+                    'type' => $category['type'],
+                ]
+            );
         }
     }
 }
